@@ -31,6 +31,18 @@ public class MovieService {
 		Movie movie = optionalMovie.get();
 		return movie;
 	}
+	
+	// データの保存
+	public Movie save(MovieForm movieForm) {
+		Movie movie = new Movie();
+		
+		movie.setTitle(movieForm.getTitle());
+		movie.setScore(movieForm.getScore());
+		// 追加日時の登録
+		movie.setCreatedAt(LocalDateTime.now());
+		
+		return this.movieRepositoy.save(movie);
+	}
 
 	// データの更新
 	public Movie update(Integer id, MovieForm movieForm) {

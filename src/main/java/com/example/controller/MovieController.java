@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,28 @@ public class MovieController {
 		// deletedAtカラムがnullのデータのみを検索
 		List<Movie> movies = this.movieService.findByDeletedAtIsNull();
 
+		// ID順でソート
+		movies.sort(Comparator.comparing(Movie::getId));
 		model.addAttribute("movies", movies);
 		return "movie/list";
 	}
+	
+	// 映画情報追加ページ表示用
+	@GetMapping("/addMovie")
+	public String addMoviePage(@ModelAttribute("movieForm") MovieForm movieForm) {
+		
+		return "movie/addMoviePage";
+	}
+	
+	// 映画情報追加の実行
+	@PostMapping("/addMovie")
+	public String addMovie(MovieForm movieForm) {
+		this.movieService.save(movieForm);
+		
+		return "redirect:/movie/list";
+	}
 
-	// 映画情報編集ページ
+	// 映画情報編集ページ表示用
 	@GetMapping("edit/{id}")
 	public String editPage(@PathVariable("id") Integer id, Model model,
 			@ModelAttribute("movieForm") MovieForm movieForm) {

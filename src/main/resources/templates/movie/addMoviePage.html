@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>映画情報追加ページ</title>
+</head>
+
+<body>
+	<h1>映画情報追加ページ</h1>
+	<form th:action="@{/movie/addMovie}" th:object="${movieForm}" method="post">
+		<div>
+			<label>タイトル</label>
+		</div>
+		<div>
+			<input type="text" th:field="*{title}" placeholder="タイトルを入力してください">
+		</div>
+		<div>
+			<label>評価</label>
+		</div>
+		<div>
+			<input type="number" th:field="*{score}" placeholder="評価点数を入力してください">
+		</div>
+		<div>
+			<input type="submit" name="send" value="追加する">
+		</div>
+		<div>
+			<a href="/movie/list">戻る</a>
+		</div>
+	</form>
+</body>
+
+</html>
