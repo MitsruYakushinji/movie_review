@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>映画評価一覧表示</title>
+</head>
+
+<body>
+	<h1>映画評価一覧表示</h1>
+	<div th:replace="fragments :: message"></div>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>タイトル</th>
+				<th>評価</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="movie : ${movies}">
+				<td th:text="${movie.id}"></td>
+				<td th:text="${movie.title}"></td>
+				<td th:text="${movie.score}"></td>
+				<td>
+					<!-- 編集ページへのアクセス -->
+					<form th:action="@{/movie/edit/{id}(id=${movie.id})}" method="get">
+						<input type="submit" value="更新">
+					</form>
+				</td>
+				<td>
+					<!-- 削除実行フォーム -->
+					<form th:action="@{/movie/delete/{id}(id=${movie.id})}" method="post">
+						<input type="submit" value="削除">
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
