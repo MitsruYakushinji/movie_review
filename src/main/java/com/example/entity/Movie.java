@@ -28,8 +28,8 @@ public class Movie {
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
 
-	@Column(name = "UPDATE_AT")
-	private LocalDateTime updateAt;
+	@Column(name = "UPDATED_AT")
+	private LocalDateTime updatedAt;
 
 	@Column(name = "DELETED_AT")
 	private LocalDateTime deletedAt;
@@ -66,12 +66,12 @@ public class Movie {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDateTime getUpdateAt() {
-		return this.updateAt;
+	public LocalDateTime getUpdatedAt() {
+		return this.updatedAt;
 	}
 
-	public void setUpdateAt(LocalDateTime updateAt) {
-		this.updateAt = updateAt;
+	public void setUpdateAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	public LocalDateTime getDeletedAt() {
