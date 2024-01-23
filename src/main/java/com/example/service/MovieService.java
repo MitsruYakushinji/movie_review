@@ -13,21 +13,21 @@ import com.example.repository.MovieRepository;
 
 @Service
 public class MovieService {
-	private final MovieRepository movieRepositoy;
+	private final MovieRepository movieRepository;
 
 	@Autowired
-	public MovieService(MovieRepository movieRepositoy) {
-		this.movieRepositoy = movieRepositoy;
+	public MovieService(MovieRepository movieRepository) {
+		this.movieRepository = movieRepository;
 	}
 
 	// 全件検索
 	public List<Movie> findAll() {
-		return this.movieRepositoy.findAll();
+		return this.movieRepository.findAll();
 	}
 
 	// IDでの単体検索
 	public Movie findById(Integer id) {
-		Optional<Movie> optionalMovie = this.movieRepositoy.findById(id);
+		Optional<Movie> optionalMovie = this.movieRepository.findById(id);
 		Movie movie = optionalMovie.get();
 		return movie;
 	}
@@ -41,7 +41,7 @@ public class MovieService {
 		// 追加日時の登録
 		movie.setCreatedAt(LocalDateTime.now());
 		
-		return this.movieRepositoy.save(movie);
+		return this.movieRepository.save(movie);
 	}
 
 	// データの更新
@@ -52,7 +52,7 @@ public class MovieService {
 		// 更新日時も登録
 		movie.setUpdateAt(LocalDateTime.now());
 
-		return this.movieRepositoy.save(movie);
+		return this.movieRepository.save(movie);
 	}
 
 	// データの削除(論理削除)
@@ -62,11 +62,11 @@ public class MovieService {
 		// deletedAtフィールドを上書き
 		movie.setDeletedAt(LocalDateTime.now());
 		
-		return this.movieRepositoy.save(movie);
+		return this.movieRepository.save(movie);
 	}
 
 	// deletedAtカラムがnullの情報を検索
 	public List<Movie> findByDeletedAtIsNull() {
-		return this.movieRepositoy.findByDeletedAtIsNull();
+		return this.movieRepository.findByDeletedAtIsNull();
 	}
 }
